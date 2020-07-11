@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      var __basePath = '/';
+    </script>
+    <style media="only screen">
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      html {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        overflow: auto;
+      }
+
+      body {
+        padding: 1rem;
+        overflow: auto;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="selectize.css" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://unpkg.com/@ag-grid-community/all-modules@23.2.0/dist/ag-grid-community.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/js/standalone/selectize.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#slider').slider({
+          value: 2008,
+          min: 2000,
+          max: 2014,
+          step: 1,
+          slide: function(event, ui) {
+            $('#SliderAmount').val('' + ui.value);
+          },
+        });
+        $('#SliderAmount').val('' + $('#slider').slider('value'));
+      });
+    </script>
+  </head>
+
+  <!-- Andrews code -->
+
+  <br /><br />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default ">
+          <div class="panel-heading">
+            <div class="panel-title">Select Categories</div>
+          </div>
+          <div class="panel-body">
+            <form role="form" id="contacts">
+              <div class="form-group">
+                <select
+                  id="select-name"
+                  placeholder="Select a person..."
+                  multiple
+                >
+                  <option value="">Type a category...</option>
+                  <option value='athlete'>Athlete Name</option>
+                  <option value="age">Age</option>
+                  <option value="country">Country</option>
+                  <option value="year">Year</option>
+                  <option value="date">Date</option>
+
+                  <option value="gold">Gold Medals</option>
+                  <option value="silver">Silver Medals</option>
+                  <option value="bronze">Bronze Medals</option>
+                </select>
+              </div>
+
+              <input
+                type="submit"
+                value="Add skill filter"
+                class="btn btn-info btn-block"
+                onclick="columnfilter(true)""
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 flex align-content-around flex-wrap">
+        <div class="col-md-6 flex align-content-around flex-wrap ">
+          <p draggable="true">
+            <label for="SliderAmount">Filter Year Less Than</label>
+            <input
+              type="number"
+              id="SliderAmount"
+              ondrag="externalFilterChanged('AndrewFilter')"
+              ondragover="externalFilterChanged('AndrewFilter')"
+              ondragleave="externalFilterChanged('AndrewFilter')"
+              style="border:0; color:#f6931f; font-size:18pt;font-weight:bold;"
+              readonly
+            />
+          </p>
+
+          <div
+            id="slider"
+            onclick="externalFilterChanged('AndrewFilter')"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br /><br /><br /><br /><br />
+
+<button type="button" class="btn btn-warning btn-lg" onclick="showAthlete(false)">Hide Age Column</button>
+
+<button type="button" class="btn btn-success btn-lg" onclick="showAthlete(true)">Show Age Column</button>
+   <BR><BR>
+  
+  <form action="create_json.php" method="post">
+  <input type="submit" name="refreshsql" class="btn btn-danger btn-lg" value="Refresh SQL" />
+</form>
+ <BR><BR>
+
+
+
+  <body>
+    <div class="test-container">
+      <div id="myGrid" class="ag-theme-alpine" style="height: 100%;" />
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
